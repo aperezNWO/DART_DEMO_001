@@ -18,11 +18,35 @@ git push -u origin main
 ## DART
 ##################################################
 
+## CREATE CONSOLE PROJECT
+cd D:\usuarios\pabloperez\dev\dart\ping
+dart create -t console dart_zero_endpoint
+
+## EXECUTE PROJECT
+
 dart pub get   
+
+dart pub outdated 
 
 dart run bin/server.dart
 
-dart pub outdated 
+
+
+##################################################
+## FLUTTER
+##################################################
+
+flutter pub outdated 
+
+Flutter pub upgrade --dry-run 
+
+flutter pub get   
+
+flutter run bin/server.dart
+
+##################################################
+## test output
+##################################################
 
 curl -i http://localhost:8080/
 
@@ -34,8 +58,10 @@ curl -i http://localhost:8080/
 # dot included !!!
 1) docker build -t dart-zero-endpoint .
 
-# list images built
-2) docker image ls 
+# list images built / test 
+2.1) docker image ls 
+2.2) docker run -p 8080:8080 -e PORT=8080 dart-zero-endpoint
+2.3) curl -i http://localhost:8080/
 
 # create a tag previous to publish
 3) docker tag dart-zero-endpoint:latest apereznwogmail/dart-zero-endpoint:latest

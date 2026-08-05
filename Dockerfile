@@ -1,21 +1,17 @@
 # --- Stage 1: build ---
-FROM ghcr.io/cirruslabs/flutter:stable AS build
+FROM dart:stable AS build
 
 WORKDIR /app
 COPY pubspec.* ./
-RUN flutter pub get
+RUN dart pub get
 
 COPY . .
-RUN flutter build linux --release
+RUN dart compile exe bin/dart_zero_endpoint.dart -o bin/server
 
 # --- Stage 2: runtime ---
-FROM debian:bookworm-slim
-RUN apt-get update && apt-get install -y \
-    libsecret-1-0 \
-    libjsoncpp25 \
-    && rm -rf /var/lib/apt/lists/*
-
-COPY --from=build /app/build/linux/x64/release/bundle /app/bundle
+FROM scratch
+COPY --from=build /runtime/ /
+COPY --from=build /app/bin/server /app/bin/server
 
 EXPOSE 8080
-CMD ["/app/bundle/dart_backend"]
+CMD ["/app/bin/server"]
