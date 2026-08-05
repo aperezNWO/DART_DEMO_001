@@ -1,0 +1,58 @@
+##################################################
+## SCM 
+##################################################
+
+##################################################
+## GIT
+##################################################
+echo "# DART_DEMO_001" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/aperezNWO/DART_DEMO_001.git
+git push -u origin main
+
+
+##################################################
+## DART
+##################################################
+
+dart pub get   
+
+dart run bin/server.dart
+
+dart pub outdated 
+
+curl -i http://localhost:8080/
+
+##################################################
+## DOCKER
+##################################################
+
+# docker must be installed on desktop. it was from codespaces, only visual studio code extensions was installed
+# dot included !!!
+1) docker build -t dart-zero-endpoint .
+
+# list images built
+2) docker image ls 
+
+# create a tag previous to publish
+3) docker tag dart-zero-endpoint:latest apereznwogmail/dart-zero-endpoint:latest
+
+# log into docker for publish
+# get PAT from https://app.docker.com/accounts/apereznwogmail/settings/personal-access-tokens
+## must return 'Login Succeeded'
+# 4) echo "YOUR_PAT_HERE" | docker login --username apereznwogmail --password-stdin
+docker login
+
+# publish in docker hub
+# https://hub.docker.com/
+5) docker push apereznwogmail/dart-zero-endpointlatest 
+
+# URL FOR RENDER : https://dashboard.render.com/
+6) docker.io/dart-zero-endpoint/java2_ee_sb_demo:latest
+
+
+##################################################
+##################################################
