@@ -74,10 +74,10 @@ docker login
 
 # publish in docker hub
 # https://hub.docker.com/
-5) docker push apereznwogmail/dart-zero-endpointlatest 
+5) docker push apereznwogmail/dart-zero-endpoint:latest 
 
 # URL FOR RENDER : https://dashboard.render.com/
-6) docker.io/dart-zero-endpoint/java2_ee_sb_demo:latest
+6) docker.io/apereznwogmail/dart-zero-endpoint:latest
 
 
 ##################################################
